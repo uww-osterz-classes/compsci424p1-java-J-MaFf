@@ -1,5 +1,5 @@
 /* COMPSCI 424 Program 1
- * Name:
+ * Name: Joey Maffiola
  */
 package compsci424.p1.java;
 
@@ -8,5 +8,5 @@ package compsci424.p1.java;
  * process's parent and children (if any) in Version 1.
  */
 public class Version1PCB {
-    
+
 }
