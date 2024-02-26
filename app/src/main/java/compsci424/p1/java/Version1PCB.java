@@ -10,8 +10,8 @@ import java.util.LinkedList;
  * process's parent and children (if any) in Version 1.
  */
 public class Version1PCB {
-    int parent; // a PCB index corresponding to the process's creator (parent)
-    LinkedList<Integer> children; // each list element contains the PCB index of one child process
+    private int parent; // a PCB index corresponding to the process's creator (parent)
+    private LinkedList<Integer> children; // each list element contains the PCB index of one child process
 
     /**
      * Default constructor. Use this to allocate (if needed) and
@@ -23,6 +23,14 @@ public class Version1PCB {
             parent = -1;
             children = new LinkedList<Integer>();
         }
+    }
+
+    public int getParent() {
+        return parent;
+    }
+
+    public LinkedList<Integer> getChildren() {
+        return children;
     }
 
 }

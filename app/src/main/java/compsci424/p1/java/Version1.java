@@ -15,6 +15,7 @@ package compsci424.p1.java;
  */
 public class Version1 {
     // Declare any class/instance variables that you need here.
+    private Version1PCB[] pcbArray;
 
     /**
      * Default constructor. Use this to allocate (if needed) and
