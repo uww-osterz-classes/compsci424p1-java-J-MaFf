@@ -110,8 +110,6 @@ public class Version1 {
         }
     }
 
-    /* If you need or want more methods, feel free to add them. */
-
     /**
      * Finds the first free index in the PCB array.
      * 
