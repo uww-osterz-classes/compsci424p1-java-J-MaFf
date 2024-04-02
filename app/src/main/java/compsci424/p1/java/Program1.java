@@ -63,15 +63,22 @@ public class Program1 {
         // 7. Store the current system time in a variable
         long startTime = System.currentTimeMillis();
         // ... then run the command sequence 200 times with Version 1.
-
+        for (int i = 0; i < 200; i++) {
+            System.out.println("Iteration " + i + ":\n");
+            runCommands(v1Obj);
+        }
         // ... After this, store the new current system time in a second variable.
         long endTime = System.currentTimeMillis();
 
         // Subtract the start time from the end time to get the Version 1 running time,
         // then display the Version 1 running time.
 
+        long runTime = endTime - startTime;
+        System.out.println("Version 1 running time for 200 iterations: " + runTime + " milliseconds.");
+
         // 8. Repeat step 7, but with the Version 2 object.
 
+        scanner.close();
         // This line is here just to test the Gradle build procedure.
         // You can delete it.
         System.out.println("Builds without errors and runs to completion.");
