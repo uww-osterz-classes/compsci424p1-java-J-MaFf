@@ -77,6 +77,11 @@ public class Program1 {
         System.out.println("Builds without errors and runs to completion.");
     }
 
+    /**
+     * Executes a series of commands on the given Version1 object.
+     *
+     * @param v1Obj the Version1 object on which the commands will be executed
+     */
     private static void runCommands(Version1 v1Obj) {
         LinkedList<String> localActions = actions;
         while (!localActions.isEmpty()) {
