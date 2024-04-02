@@ -3,6 +3,9 @@
  */
 package compsci424.p1.java;
 
+import java.util.LinkedList;
+import java.util.Scanner;
+
 /**
  * Main class for this program. The required steps have been copied
  * into the main method as comments. Feel free to add more comments to
@@ -11,11 +14,13 @@ package compsci424.p1.java;
  */
 public class Program1 {
     // Declare any class/instance variables that you need here.
+    static LinkedList<String> actions = new LinkedList<String>();
 
     /**
      * @param args command-line arguments, which can be ignored
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         // 1. Ask the user to enter commands of the form "create N",
         // "destroy N", or "end", where N is an integer between 0
@@ -23,18 +28,30 @@ public class Program1 {
 
         System.out.println("Enter commands of the form \"create N\", \"destroy N\", or \"end\".");
         System.out.println("N is an integer between 0 and 15.");
+        String command = scanner.nextLine();
+        actions.add(command);
 
         // 2. While the user has not typed "end", continue accepting
         // commands. Add each command to a list of actions to take
         // while you run the simulation.
+
         // 3. When the user types "end" (or optionally any word that
         // is not "create" or "destroy"), stop accepting commands
         // and complete the following steps.
         //
         // Hint: Steps 2 and 3 refer to the same loop. ;-)
 
+        while (!command.equalsIgnoreCase("end")) {
+            System.out.println("Enter another command or type end to run your commands: ");
+            command = scanner.nextLine();
+            actions.add(command);
+        }
+
         // 4. Create an object of the Version 1 class and an object of
         // the Version 2 class.
+
+        Version1 v1Obj = new Version1();
+        Version2 v2Obj = new Version2();
 
         // 5. Run the command sequence once with the Version 1 object,
         // calling its showProcessTree method after each command to
