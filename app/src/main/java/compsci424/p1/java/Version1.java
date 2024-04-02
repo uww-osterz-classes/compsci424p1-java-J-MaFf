@@ -9,24 +9,23 @@ import java.util.LinkedList;
  * Implements the process creation hierarchy for Version 1, which uses
  * linked lists.
  * 
- * This is a template. Program1.java *must* contain the main class
- * for this program. Otherwise, feel free to edit these files, even
- * these pre-written comments or my provided code. You can add any
- * classes, methods, and data structures that you need to solve the
- * problem and display your solution in the correct format.
+ * This class contains methods to create and destroy processes, as well as
+ * a method to print information about each process in the PCB array.
  */
+
 public class Version1 {
     // Declare any class/instance variables that you need here.
     private Version1PCB[] pcbArray;
 
     /**
-     * Default constructor. Use this to allocate (if needed) and
-     * initialize the PCB array, create the PCB for process 0, and do
-     * any other initialization that is needed.
+     * Represents a version 1 Process Control Block.
+     * This constructor initializes an array of Version1PCB objects and sets the
+     * initial
+     * process.
      */
     public Version1() {
         this.pcbArray = new Version1PCB[10]; // assuming 10 processes max
-        pcbArray[0] = new Version1PCB(-1); // process 0 has no parent
+        pcbArray[0] = new Version1PCB(-1); // Initial process 0 has no parent
     }
 
     /**
@@ -67,11 +66,6 @@ public class Version1 {
             return -1; // unsuccessful
         }
 
-        // Assuming you've found the PCB for targetPid in the PCB array:
-        // 1. Recursively destroy all descendants of targetPid, if it
-        // has any, and mark their PCBs as "free" in the PCB array
-        // (i.e., deallocate them)
-
         for (int child : pcbArray[targetPid].getChildren()) { // 1. Recursively destroy all descendants of targetPid
             destroy(child);
         }
@@ -85,14 +79,7 @@ public class Version1 {
     }
 
     /**
-     * Traverse the process creation hierarchy graph, printing
-     * information about each process as you go. See Canvas for the
-     * *required* output format.
-     * 
-     * You can directly use "System.out.println" statements (or
-     * similar) to send the required output to stdout, or you can
-     * change the return type of this function to return the text to
-     * the main program for printing. It's your choice.
+     * Prints information to the console about each process in the pcbArray.
      */
     void showProcessInfo() {
         for (int i = 0; i < pcbArray.length; i++) {
