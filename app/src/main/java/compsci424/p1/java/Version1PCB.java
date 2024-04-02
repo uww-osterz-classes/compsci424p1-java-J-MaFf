@@ -25,14 +25,29 @@ public class Version1PCB {
         }
     }
 
+    /**
+     * Adds a child process ID to the list of children for this process.
+     *
+     * @param child the ID of the child process to be added
+     */
     public void addChild(int child) {
         this.children.add(child);
     }
 
+    /**
+     * Returns the parent index of this process control block (PCB).
+     *
+     * @return the parent index of this PCB
+     */
     public int getParent() {
         return parent;
     }
 
+    /**
+     * Returns a LinkedList of integers representing the children of this PCB.
+     *
+     * @return a LinkedList of PCB indexes
+     */
     public LinkedList<Integer> getChildren() {
         return children;
     }

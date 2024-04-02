@@ -28,35 +28,25 @@ public class Version1 {
     }
 
     /**
-     * Creates a new child process of the process with ID parentPid.
+     * Creates a new child process of the process with parentPid.
      * 
      * @param parentPid the PID of the new process's parent
      * @return 0 if successful, -1 if unsuccessful
      */
     int create(int parentPid) {
-        // If parentPid is not in the process hierarchy, do nothing;
-        // your code may return an error code or message in this case,
-        // but it should not halt
-
-        if (pcbArray[parentPid] == null) {
-            return -1; // error code
+        if (pcbArray[parentPid] == null) { // If parentPid is not in the process hierarchy, do nothing;
+            return -1; // unsuccessful
         }
 
-        // Assuming you've found the PCB for parentPid in the PCB array:
-        // 1. Allocate and initialize a free PCB object from the array
-        // of PCB objects
-
+        // 1. Allocate and initialize a free PCB object from the array of PCB objects
         Version1PCB newPCB = new Version1PCB(parentPid);
         int newPcbIndex = findFreeIndex();
         pcbArray[newPcbIndex] = newPCB;
 
-        // 2. Insert the newly allocated PCB object into parentPid's
-        // list of children
-        pcbArray[parentPid].addChild(newPcbIndex); // check
+        // 2. Insert the newly allocated PCB object into parentPid's list of children
+        pcbArray[parentPid].addChild(newPcbIndex);
 
-        // You can decide what the return value(s), if any, should be.
-        // If you change the return type/value(s), update the Javadoc.
-        return 0; // often means "success" or "terminated normally"
+        return 0; // successful
     }
 
     /**
