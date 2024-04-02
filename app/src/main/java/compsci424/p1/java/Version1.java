@@ -25,7 +25,7 @@ public class Version1 {
      * process.
      */
     public Version1() {
-        this.pcbArray = new Version1PCB[10]; // assuming 10 processes max
+        this.pcbArray = new Version1PCB[16]; // assuming 16 processes max
         pcbArray[0] = new Version1PCB(-1); // Initial process 0 has no parent
     }
 

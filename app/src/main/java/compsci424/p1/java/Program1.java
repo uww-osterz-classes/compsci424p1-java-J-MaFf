@@ -21,6 +21,9 @@ public class Program1 {
         // "destroy N", or "end", where N is an integer between 0
         // and 15.
 
+        System.out.println("Enter commands of the form \"create N\", \"destroy N\", or \"end\".");
+        System.out.println("N is an integer between 0 and 15.");
+
         // 2. While the user has not typed "end", continue accepting
         // commands. Add each command to a list of actions to take
         // while you run the simulation.
