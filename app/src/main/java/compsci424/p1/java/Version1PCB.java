@@ -25,6 +25,10 @@ public class Version1PCB {
         }
     }
 
+    public void addChild(int child) {
+        this.children.add(child);
+    }
+
     public int getParent() {
         return parent;
     }
