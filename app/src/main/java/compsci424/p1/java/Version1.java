@@ -41,12 +41,13 @@ public class Version1 {
 
         // 1. Allocate and initialize a free PCB object from the array of PCB objects
         Version1PCB newPCB = new Version1PCB(parentPid);
-        int newPcbIndex = findFreeIndex();
+        int newPcbIndex = findFreePcbIndex();
         pcbArray[newPcbIndex] = newPCB;
 
         // 2. Insert the newly allocated PCB object into parentPid's list of children
         pcbArray[parentPid].addChild(newPcbIndex);
 
+        System.out.println("Process " + newPcbIndex + " has been created.");
         return 0; // successful
     }
 
@@ -102,7 +103,7 @@ public class Version1 {
      * 
      * @return the index of the first free PCB object in the array
      */
-    int findFreeIndex() {
+    int findFreePcbIndex() {
         for (int i = 0; i < pcbArray.length; i++) {
             if (pcbArray[i] == null) {
                 return i;
