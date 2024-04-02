@@ -28,7 +28,7 @@ public class Program1 {
 
         System.out.println("Enter commands of the form \"create N\", \"destroy N\", or \"end\".");
         System.out.println("N is an integer between 0 and 15.");
-        String command = scanner.nextLine();
+        String command = scanner.nextLine().toLowerCase();
         actions.add(command);
 
         // 2. While the user has not typed "end", continue accepting
@@ -43,7 +43,7 @@ public class Program1 {
 
         while (!command.equalsIgnoreCase("end")) {
             System.out.println("Enter another command or type end to run your commands: ");
-            command = scanner.nextLine();
+            command = scanner.nextLine().toLowerCase();
             actions.add(command);
         }
 
@@ -57,21 +57,52 @@ public class Program1 {
         // calling its showProcessTree method after each command to
         // show the changes in the tree after each command.
 
+        runCommands(v1Obj);
         // 6. Repeat step 5, but with the Version 2 object.
-
+        runCommands(v2Obj);
         // 7. Store the current system time in a variable
-
+        long startTime = System.currentTimeMillis();
         // ... then run the command sequence 200 times with Version 1.
 
-        // ... After this, store the new current system time in a
-        // second variable. Subtract the start time from the end
-        // time to get the Version 1 running time, then display
-        // the Version 1 running time.
+        // ... After this, store the new current system time in a second variable.
+        long endTime = System.currentTimeMillis();
+
+        // Subtract the start time from the end time to get the Version 1 running time,
+        // then display the Version 1 running time.
 
         // 8. Repeat step 7, but with the Version 2 object.
 
         // This line is here just to test the Gradle build procedure.
         // You can delete it.
         System.out.println("Builds without errors and runs to completion.");
+    }
+
+    private static void runCommands(Version1 v1Obj) {
+        LinkedList<String> localActions = actions;
+        while (!localActions.isEmpty()) {
+            String currentCommand = localActions.remove();
+            String[] parts = currentCommand.split(" ");
+            int TargetPID = Integer.parseInt(parts[1]);
+            switch (parts[0]) {
+                case "create":
+                    v1Obj.create(TargetPID);
+                    break;
+
+                case "destroy":
+                    v1Obj.destroy(TargetPID);
+                    break;
+
+                default:
+                    System.out.println("Unknown Command: " + parts[0] + "\nSkipping command...");
+                    break;
+            }
+            v1Obj.showProcessInfo();
+        }
+
+    }
+
+    private static void runCommands(Version2 v2Obj) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'runCommands'");
     }
 }
