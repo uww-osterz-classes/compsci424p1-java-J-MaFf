@@ -35,6 +35,7 @@ public class Version1 {
      */
     int create(int parentPid) {
         if (pcbArray[parentPid] == null) { // If parentPid is not in the process hierarchy, do nothing;
+            System.out.println("Parent process does not exist.");
             return -1; // unsuccessful
         }
 
@@ -54,7 +55,7 @@ public class Version1 {
      * its descendant processes (child, grandchild, etc.).
      * 
      * @param targetPid the PID of the process to be destroyed
-     * @return 0 if successful, not 0 if unsuccessful
+     * @return 0 if successful, -1 if unsuccessful
      */
     int destroy(int targetPid) {
         // If targetPid is not in the process hierarchy, do nothing;
