@@ -1,5 +1,6 @@
 /* COMPSCI 424 Program 1
  * Name: Joey Maffiola
+ * File: Program1.java
  */
 package compsci424.p1.java;
 
