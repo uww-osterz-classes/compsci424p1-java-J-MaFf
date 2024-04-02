@@ -23,7 +23,8 @@ public class Version1 {
      * any other initialization that is needed.
      */
     public Version1() {
-
+        this.pcbArray = new Version1PCB[10]; // assuming 10 processes max
+        pcbArray[0] = new Version1PCB(-1); // process 0 has no parent
     }
 
     /**
@@ -36,6 +37,10 @@ public class Version1 {
         // If parentPid is not in the process hierarchy, do nothing;
         // your code may return an error code or message in this case,
         // but it should not halt
+
+        if (pcbArray[parentPid] == null) {
+            return -1; // error code
+        }
 
         // Assuming you've found the PCB for parentPid in the PCB array:
         // 1. Allocate and initialize a free PCB object from the array
@@ -91,5 +96,19 @@ public class Version1 {
     }
 
     /* If you need or want more methods, feel free to add them. */
+
+    /**
+     * Finds the first free index in the PCB array.
+     * 
+     * @return the index of the first free PCB object in the array
+     */
+    int findFreeIndex() {
+        for (int i = 0; i < pcbArray.length; i++) {
+            if (pcbArray[i] == null) {
+                return i;
+            }
+        }
+        return -1; // Return -1 if no free index is found
+    }
 
 }
