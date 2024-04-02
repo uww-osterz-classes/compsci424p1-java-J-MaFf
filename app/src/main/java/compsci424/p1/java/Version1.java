@@ -58,23 +58,27 @@ public class Version1 {
      * @return 0 if successful, -1 if unsuccessful
      */
     int destroy(int targetPid) {
-        // If targetPid is not in the process hierarchy, do nothing;
-        // your code may return an error code or message in this case,
-        // but it should not halt
+
+        if (pcbArray[targetPid] == null) { // If targetPid is not in the process hierarchy, do nothing
+            System.out.println("Target process does not exist.");
+            return -1; // unsuccessful
+        }
 
         // Assuming you've found the PCB for targetPid in the PCB array:
         // 1. Recursively destroy all descendants of targetPid, if it
         // has any, and mark their PCBs as "free" in the PCB array
         // (i.e., deallocate them)
 
-        // 2. Remove targetPid from its parent's list of children
+        for (int child : pcbArray[targetPid].getChildren()) { // 1. Recursively destroy all descendants of targetPid
+            destroy(child);
+        }
 
-        // 3. Deallocate targetPid's PCB and mark its PCB array entry
-        // as "free"
+        pcbArray[targetPid].getChildren().remove(targetPid); // 2. Remove targetPid from its parent's list of children
 
-        // You can decide what the return value(s), if any, should be.
-        // If you change the return type/value(s), update the Javadoc.
-        return 0; // often means "success" or "terminated normally"
+        pcbArray[targetPid] = null; // 3. Deallocate targetPid's PCB and mark its PCB array entry as "free"
+
+        System.out.println("Process " + targetPid + " and all it's children have been destroyed.");
+        return 0; // successful
     }
 
     /**
