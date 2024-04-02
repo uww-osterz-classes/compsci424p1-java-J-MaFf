@@ -3,6 +3,8 @@
  */
 package compsci424.p1.java;
 
+import java.util.LinkedList;
+
 /**
  * Implements the process creation hierarchy for Version 1, which uses
  * linked lists.
@@ -93,7 +95,19 @@ public class Version1 {
      * the main program for printing. It's your choice.
      */
     void showProcessInfo() {
+        for (int i = 0; i < pcbArray.length; i++) {
+            System.out.println("Process" + pcbArray[i] + ": parent is " + pcbArray[i].getParent() + " and ");
+            LinkedList<Integer> children = pcbArray[i].getChildren();
+            if (children.isEmpty()) {
+                System.out.println("has no children");
+            } else {
+                System.out.println("and children are ");
+                for (int child : children) {
+                    System.out.println(child + " ");
+                }
+            }
 
+        }
     }
 
     /* If you need or want more methods, feel free to add them. */
