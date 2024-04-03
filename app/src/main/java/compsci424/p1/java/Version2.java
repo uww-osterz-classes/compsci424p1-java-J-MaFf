@@ -16,6 +16,7 @@ package compsci424.p1.java;
  */
 public class Version2 {
     // Declare any class/instance variables that you need here.
+    private Version2PCB[] pcbArray;
 
     /**
      * Default constructor. Use this to allocate (if needed) and
@@ -23,7 +24,8 @@ public class Version2 {
      * any other initialization that is needed.
      */
     public Version2() {
-
+        this.pcbArray = new Version2PCB[16]; // assuming 16 processes max
+        pcbArray[0] = new Version2PCB(-1); // Initial process 0 has no parent
     }
 
     /**
