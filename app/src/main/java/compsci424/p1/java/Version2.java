@@ -40,9 +40,10 @@ public class Version2 {
             return -1; // unsuccessful
         }
         // 1. Allocate and initialize a free PCB object from the array of PCB objects
+        Version2PCB newPCB = new Version2PCB(parentPid);
         int newPcbIndex = findFreePcbIndex();
         // 2. Connect the new PCB object to its parent
-        pcbArray[newPcbIndex] = new Version2PCB(parentPid);
+        pcbArray[newPcbIndex] = newPCB;
         // its older sibling (if any), and its younger sibling (if any)
         int firstChild = pcbArray[parentPid].getFirstChild();
         if (firstChild == -1) { // Parent has no first child
