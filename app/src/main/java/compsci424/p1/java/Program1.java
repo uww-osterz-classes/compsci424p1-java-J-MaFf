@@ -78,6 +78,16 @@ public class Program1 {
         System.out.println("Version 1 running time for 200 iterations: " + runTime + " milliseconds.");
 
         // 8. Repeat step 7, but with the Version 2 object.
+        startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < 200; i++) {
+            System.out.println("Iteration " + i + ":\n");
+            runCommands(v2Obj);
+        }
+
+        endTime = System.currentTimeMillis();
+        runTime = endTime - startTime;
+        System.out.println("Version 2 running time for 200 iterations: " + runTime + " milliseconds.");
 
         scanner.close();
         // This line is here just to test the Gradle build procedure.
@@ -115,7 +125,6 @@ public class Program1 {
     }
 
     private static void runCommands(Version2 v2Obj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runCommands'");
+
     }
 }
