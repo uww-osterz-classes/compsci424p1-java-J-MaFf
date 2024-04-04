@@ -65,7 +65,7 @@ public class Program1 {
         long startTime = System.currentTimeMillis();
         // ... then run the command sequence 200 times with Version 1.
         for (int i = 0; i < 200; i++) {
-            System.out.println("Iteration " + i + ":\n");
+            // System.out.println("Iteration " + i + ":\n");
             runCommands(v1Obj);
         }
         // ... After this, store the new current system time in a second variable.
@@ -81,7 +81,7 @@ public class Program1 {
         startTime = System.currentTimeMillis();
 
         for (int i = 0; i < 200; i++) {
-            System.out.println("Iteration " + i + ":\n");
+            // System.out.println("Iteration " + i + ":\n");
             runCommands(v2Obj);
         }
 
