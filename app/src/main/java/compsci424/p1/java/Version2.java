@@ -36,6 +36,7 @@ public class Version2 {
      */
     int create(int parentPid) {
         if (pcbArray[parentPid] == null) { // If parentPid is not in the process hierarchy, do nothing;
+            System.out.println("Parent process does not exist.");
             return -1; // unsuccessful
         }
         // 1. Allocate and initialize a free PCB object from the array of PCB objects
@@ -65,12 +66,16 @@ public class Version2 {
      * its descendant processes (child, grandchild, etc.).
      * 
      * @param targetPid the PID of the process to be destroyed
-     * @return 0 if successful, not 0 if unsuccessful
+     * @return 0 if successful, -1 if unsuccessful
      */
     int destroy(int targetPid) {
         // If targetPid is not in the process hierarchy, do nothing;
         // your code may return an error code or message in this case,
         // but it should not halt
+        if (pcbArray[targetPid] == null) {
+            System.out.println("Target process does not exist.");
+            return -1; // unsuccessful
+        }
 
         // Assuming you've found the PCB for targetPid in the PCB array:
         // 1. Recursively destroy all descendants of targetPid, if it
@@ -85,7 +90,7 @@ public class Version2 {
 
         // You can decide what the return value(s), if any, should be.
         // If you change the return type/value(s), update the Javadoc.
-        return 0; // often means "success" or "terminated normally"
+        return 0; // successful
     }
 
     /**
