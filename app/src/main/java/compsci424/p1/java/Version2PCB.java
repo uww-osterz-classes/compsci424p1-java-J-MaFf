@@ -45,6 +45,15 @@ public class Version2PCB {
     }
 
     /**
+     * Sets the index of the first child process for this PCB.
+     *
+     * @param firstChild the index of the first child process
+     */
+    public void setFirstChild(int firstChild) {
+        this.firstChild = firstChild;
+    }
+
+    /**
      * Returns the index of the younger sibling of the current process control block
      * (PCB).
      *
@@ -55,6 +64,15 @@ public class Version2PCB {
     }
 
     /**
+     * Sets the younger sibling of the current process control block (PCB).
+     *
+     * @param youngerSibling the ID of the younger sibling PCB
+     */
+    public void setYoungerSibling(int youngerSibling) {
+        this.youngerSibling = youngerSibling;
+    }
+
+    /**
      * Returns the index of the older sibling of the current process control block
      * (PCB).
      *
@@ -62,6 +80,15 @@ public class Version2PCB {
      */
     public int getOlderSibling() {
         return olderSibling;
+    }
+
+    /**
+     * Sets the older sibling of the current process control block (PCB).
+     *
+     * @param olderSibling the ID of the older sibling process
+     */
+    public void setOlderSibling(int olderSibling) {
+        this.olderSibling = olderSibling;
     }
 
 }
