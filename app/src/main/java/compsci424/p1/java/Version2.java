@@ -35,26 +35,28 @@ public class Version2 {
      * @return 0 if successful, -1 if unsuccessful
      */
     int create(int parentPid) {
-        // If parentPid is not in the process hierarchy, do nothing;
-        // your code may return an error code or message in this case,
-        // but it should not halt
-        if (pcbArray[parentPid] == null) {
+        if (pcbArray[parentPid] == null) { // If parentPid is not in the process hierarchy, do nothing;
             return -1; // unsuccessful
         }
-
-        // Assuming you've found the PCB for parentPid in the PCB array:
-        // 1. Allocate and initialize a free PCB object from the array
-        // of PCB objects
-        int freePcbIndex = findFreePcbIndex();
-        pcbArray[freePcbIndex] = new Version2PCB(parentPid);
-        // 2. Connect the new PCB object to its parent, its older
-        // sibling (if any), and its younger sibling (if any)
-        if (pcbArray[parentPid].getFirstChild() == -1) { // No first child
-
+        // 1. Allocate and initialize a free PCB object from the array of PCB objects
+        int newPcbIndex = findFreePcbIndex();
+        // 2. Connect the new PCB object to its parent
+        pcbArray[newPcbIndex] = new Version2PCB(parentPid);
+        // its older sibling (if any), and its younger sibling (if any)
+        int firstChild = pcbArray[parentPid].getFirstChild();
+        if (firstChild == -1) { // Parent has no first child
+            pcbArray[parentPid].setFirstChild(newPcbIndex); // Set first child to new process
+            return 0;
         }
-
-        // You can decide what the return value(s), if any, should be.
-        // If you change the return type/value(s), update the Javadoc.
+        // Parent has a first child
+        int nextChild = pcbArray[firstChild].getYoungerSibling();
+        while (nextChild != -1) { // Find the last child
+            nextChild = pcbArray[nextChild].getYoungerSibling();
+        }
+        // Set the new process as the last child's younger sibling
+        pcbArray[nextChild].setYoungerSibling(newPcbIndex);
+        // Set the new process's older sibling to the last child
+        pcbArray[newPcbIndex].setOlderSibling(nextChild);
         return 0; // successful
     }
 
