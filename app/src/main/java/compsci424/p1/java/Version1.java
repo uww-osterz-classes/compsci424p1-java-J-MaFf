@@ -71,8 +71,9 @@ public class Version1 {
             destroy(child);
         }
 
-        pcbArray[targetPid].getChildren().remove(targetPid); // 2. Remove targetPid from its parent's list of children
-
+        // TEst
+        int parentPid = pcbArray[targetPid].getParent();
+        pcbArray[parentPid].getChildren().remove(Integer.valueOf(targetPid));
         pcbArray[targetPid] = null; // 3. Deallocate targetPid's PCB and mark its PCB array entry as "free"
 
         System.out.println("Process " + targetPid + " and all it's children have been destroyed.");
