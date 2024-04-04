@@ -50,13 +50,14 @@ public class Version2 {
         }
         // Parent has a first child
         int currentChild = firstChild;
-        while (pcbArray[currentChild].getOlderSibling() != -1) { // While current child has an older sibling
-            currentChild = pcbArray[currentChild].getOlderSibling();
+        while (pcbArray[currentChild].getYoungerSibling() != -1) { // While current child has an older sibling
+            currentChild = pcbArray[currentChild].getYoungerSibling();
         }
+        // current child is now the youngest child
         pcbArray[currentChild].setYoungerSibling(newPcbIndex);
         pcbArray[newPcbIndex].setOlderSibling(currentChild);
 
-        return 0;
+        return 0; // successful
     }
 
     /**
