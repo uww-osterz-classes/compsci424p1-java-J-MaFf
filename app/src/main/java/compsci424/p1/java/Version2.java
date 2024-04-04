@@ -4,8 +4,6 @@
  */
 package compsci424.p1.java;
 
-import org.checkerframework.checker.units.qual.s;
-
 /**
  * Implements the process creation hierarchy for Version 2, which does
  * not use linked lists.
