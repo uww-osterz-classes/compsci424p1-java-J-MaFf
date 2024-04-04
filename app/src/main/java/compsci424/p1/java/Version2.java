@@ -49,6 +49,9 @@ public class Version2 {
         pcbArray[freePcbIndex] = new Version2PCB(parentPid);
         // 2. Connect the new PCB object to its parent, its older
         // sibling (if any), and its younger sibling (if any)
+        if (pcbArray[parentPid].getFirstChild() == -1) { // No first child
+
+        }
 
         // You can decide what the return value(s), if any, should be.
         // If you change the return type/value(s), update the Javadoc.
