@@ -4,6 +4,8 @@
  */
 package compsci424.p1.java;
 
+import org.checkerframework.checker.units.qual.s;
+
 /**
  * Implements the process creation hierarchy for Version 2, which does
  * not use linked lists.
@@ -81,8 +83,7 @@ public class Version2 {
             destroy(child);
         }
 
-        // 2. Adjust connections within the hierarchy graph as needed to
-        // re-connect the graph
+        // 2. Adjust connections within the hierarchy graph
         int olderSibling = pcbArray[targetPid].getOlderSibling();
         int youngerSibling = pcbArray[targetPid].getYoungerSibling();
         if (olderSibling != -1) { // targetPid has an older sibling
@@ -104,27 +105,26 @@ public class Version2 {
     }
 
     /**
-     * Traverse the process creation hierarchy graph, printing
-     * information about each process as you go. See Canvas for the
-     * *required* output format.
-     * 
-     * You can directly use "System.out.println" statements (or
-     * similar) to send the required output to stdout, or you can
-     * change the return type of this function to return the text to
-     * the main program for printing. It's your choice.
+     * Prints information to the console about each process in the pcbArray.
      */
     void showProcessInfo() {
-        for (int i = 0; i < pcbArray.length; i++) {
+        for (int i = 0; i < pcbArray.length; i++) { // For each process in the PCB array
             System.out.print("Process" + pcbArray[i] + ": parent is " + pcbArray[i].getParent() + " and ");
-            if (pcbArray[i].getFirstChild() == -1) {
+            int firstChild = pcbArray[i].getFirstChild();
+
+            if (firstChild == -1) { // If process has no children
                 System.out.println("has no children");
             } else {
-                System.out.print("and children are ");
+                System.out.print("and children are " + pcbArray[firstChild] + " ");
+                int currentChild = pcbArray[firstChild].getYoungerSibling();
+                while (currentChild != 1) { // While there are younger siblings
+                    System.out.print(pcbArray[currentChild] + " ");
+                    currentChild = pcbArray[currentChild].getYoungerSibling();
+                }
+                System.out.println();
             }
         }
     }
-
-    /* If you need or want more methods, feel free to add them. */
 
     /**
      * Finds the index of the first available PCB (Process Control Block) in the
