@@ -49,9 +49,9 @@ public class Version2 {
             return 0;
         }
         // Parent has a first child
-        int nextChild = pcbArray[firstChild].getYoungerSibling();
+        int nextChild = pcbArray[firstChild].getOlderSibling();
         while (nextChild != -1) { // Find the last child
-            nextChild = pcbArray[nextChild].getYoungerSibling();
+            nextChild = pcbArray[nextChild].getOlderSibling();
         }
         // Set the new process as the last child's younger sibling
         pcbArray[nextChild].setYoungerSibling(newPcbIndex);
