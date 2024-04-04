@@ -76,22 +76,30 @@ public class Version2 {
 
         // 1. Recursively destroy all descendants of targetPid, if it has any, and mark
         // their PCBs as "free" in the PCB array (i.e., deallocate them)
-        for (int child = pcbArray[targetPid].getFirstChild(); child != -1; child = pcbArray[child]
-                .getYoungerSibling()) {
+        int firstChild = pcbArray[targetPid].getFirstChild();
+        for (int child = firstChild; child != -1; child = pcbArray[child].getYoungerSibling()) {
             destroy(child);
         }
 
         // 2. Adjust connections within the hierarchy graph as needed to
         // re-connect the graph
-        if (pcbArray[targetPid].getFirstChild() != -1) { // Target PID has a first child
-
+        int olderSibling = pcbArray[targetPid].getOlderSibling();
+        int youngerSibling = pcbArray[targetPid].getYoungerSibling();
+        if (olderSibling != -1) { // targetPid has an older sibling
+            pcbArray[olderSibling].setYoungerSibling(youngerSibling);
+            if (youngerSibling != -1) { // targetPid has a younger sibling
+                pcbArray[youngerSibling].setOlderSibling(olderSibling);
+            }
+        } else { // targetPid is the first child
+            pcbArray[pcbArray[targetPid].getParent()].setFirstChild(youngerSibling);
+            if (youngerSibling != -1) { // targetPid has a younger sibling
+                pcbArray[youngerSibling].setOlderSibling(-1);
+            }
         }
 
-        // 3. Deallocate targetPid's PCB and mark its PCB array entry
-        // as "free"
+        // 3. Deallocate targetPid's PCB and mark its PCB array entry as "free"
 
-        // You can decide what the return value(s), if any, should be.
-        // If you change the return type/value(s), update the Javadoc.
+        pcbArray[targetPid] = null;
         return 0; // successful
     }
 
