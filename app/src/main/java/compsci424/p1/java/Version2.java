@@ -32,23 +32,27 @@ public class Version2 {
      * Creates a new child process of the process with ID parentPid.
      * 
      * @param parentPid the PID of the new process's parent
-     * @return 0 if successful, not 0 if unsuccessful
+     * @return 0 if successful, -1 if unsuccessful
      */
     int create(int parentPid) {
         // If parentPid is not in the process hierarchy, do nothing;
         // your code may return an error code or message in this case,
         // but it should not halt
+        if (pcbArray[parentPid] == null) {
+            return -1; // unsuccessful
+        }
 
         // Assuming you've found the PCB for parentPid in the PCB array:
         // 1. Allocate and initialize a free PCB object from the array
         // of PCB objects
-
+        int freePcbIndex = findFreePcbIndex();
+        pcbArray[freePcbIndex] = new Version2PCB(parentPid);
         // 2. Connect the new PCB object to its parent, its older
         // sibling (if any), and its younger sibling (if any)
 
         // You can decide what the return value(s), if any, should be.
         // If you change the return type/value(s), update the Javadoc.
-        return 0; // often means "success" or "terminated normally"
+        return 0; // successful
     }
 
     /**
@@ -94,5 +98,20 @@ public class Version2 {
     }
 
     /* If you need or want more methods, feel free to add them. */
+
+    /**
+     * Finds the index of the first available PCB (Process Control Block) in the
+     * pcbArray.
+     * 
+     * @return The index of the first available PCB, or -1 if no PCB is available.
+     */
+    int findFreePcbIndex() {
+        for (int i = 0; i < pcbArray.length; i++) {
+            if (pcbArray[i] == null) {
+                return i; // successful
+            }
+        }
+        return -1; // unsuccessful
+    }
 
 }

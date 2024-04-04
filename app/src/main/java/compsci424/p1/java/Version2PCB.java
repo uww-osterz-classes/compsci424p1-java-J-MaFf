@@ -26,4 +26,42 @@ public class Version2PCB {
         this.olderSibling = -1;
     }
 
+    /**
+     * Returns the parent of this PCB (Process Control Block).
+     *
+     * @return the parent of this PCB
+     */
+    public int getParent() {
+        return parent;
+    }
+
+    /**
+     * Returns the identifier of the first child process of this PCB.
+     *
+     * @return the identifier of the first child process
+     */
+    public int getFirstChild() {
+        return firstChild;
+    }
+
+    /**
+     * Returns the index of the younger sibling of the current process control block
+     * (PCB).
+     *
+     * @return the index of the younger sibling
+     */
+    public int getYoungerSibling() {
+        return youngerSibling;
+    }
+
+    /**
+     * Returns the index of the older sibling of the current process control block
+     * (PCB).
+     *
+     * @return the index of the older sibling
+     */
+    public int getOlderSibling() {
+        return olderSibling;
+    }
+
 }
