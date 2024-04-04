@@ -124,7 +124,31 @@ public class Program1 {
 
     }
 
+    /**
+     * Runs a series of commands on the given Version2 object.
+     *
+     * @param v2Obj the Version2 object on which the commands will be executed
+     */
     private static void runCommands(Version2 v2Obj) {
+        LinkedList<String> localActions = actions;
+        while (!localActions.isEmpty()) {
+            String currentCommand = localActions.remove();
+            String[] parts = currentCommand.split(" ");
+            int TargetPID = Integer.parseInt(parts[1]);
+            switch (parts[0]) {
+                case "create":
+                    v2Obj.create(TargetPID);
+                    break;
 
+                case "destroy":
+                    v2Obj.destroy(TargetPID);
+                    break;
+
+                default:
+                    System.out.println("Unknown Command: " + parts[0] + "\nSkipping command...");
+                    break;
+            }
+            v2Obj.showProcessInfo();
+        }
     }
 }
