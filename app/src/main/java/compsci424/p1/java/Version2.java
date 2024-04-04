@@ -114,7 +114,14 @@ public class Version2 {
      * the main program for printing. It's your choice.
      */
     void showProcessInfo() {
-
+        for (int i = 0; i < pcbArray.length; i++) {
+            System.out.print("Process" + pcbArray[i] + ": parent is " + pcbArray[i].getParent() + " and ");
+            if (pcbArray[i].getFirstChild() == -1) {
+                System.out.println("has no children");
+            } else {
+                System.out.print("and children are ");
+            }
+        }
     }
 
     /* If you need or want more methods, feel free to add them. */
