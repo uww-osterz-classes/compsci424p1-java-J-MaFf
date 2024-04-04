@@ -117,7 +117,7 @@ public class Version2 {
             if (firstChild == -1) { // If process has no children
                 System.out.println("has no children");
             } else {
-                System.out.print("and children are " + pcbArray[firstChild] + " ");
+                System.out.print("children are " + pcbArray[firstChild] + " ");
                 int currentChild = pcbArray[firstChild].getYoungerSibling();
                 while (currentChild != 1) { // While there are younger siblings
                     System.out.print(pcbArray[currentChild] + " ");

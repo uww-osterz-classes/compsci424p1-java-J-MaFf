@@ -87,12 +87,12 @@ public class Version1 {
         for (int i = 0; i < pcbArray.length; i++) {
             if (pcbArray[i] == null)
                 continue;
-            System.out.print("Process " + i + ": parent is " + pcbArray[i].getParent() + " and ");
+            System.out.print("Process " + i + ": parent is " + pcbArray[i].getParent() + " and "); // HERE
             LinkedList<Integer> children = pcbArray[i].getChildren();
             if (children.isEmpty()) {
                 System.out.println("has no children");
             } else {
-                System.out.print("and children are ");
+                System.out.print("children are ");
                 for (int child : children) {
                     System.out.print(child + " ");
                 }
