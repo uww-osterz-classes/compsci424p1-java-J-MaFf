@@ -102,7 +102,7 @@ public class Program1 {
      */
     private static void runCommands(Version1 v1Obj) {
         LinkedList<String> localActions = actions;
-        while (!localActions.isEmpty()) {
+        while (!localActions.isEmpty() && !localActions.peek().equalsIgnoreCase("end")) {
             String currentCommand = localActions.remove();
             String[] parts = currentCommand.split(" ");
             int TargetPID = Integer.parseInt(parts[1]);
