@@ -49,15 +49,14 @@ public class Version2 {
             return 0;
         }
         // Parent has a first child
-        int nextChild = pcbArray[firstChild].getOlderSibling();
-        while (nextChild != -1) { // Find the last child
-            nextChild = pcbArray[nextChild].getOlderSibling();
+        int currentChild = firstChild;
+        while (pcbArray[currentChild].getOlderSibling() != -1) { // While current child has an older sibling
+            currentChild = pcbArray[currentChild].getOlderSibling();
         }
-        // Set the new process as the last child's younger sibling
-        pcbArray[nextChild].setYoungerSibling(newPcbIndex);
-        // Set the new process's older sibling to the last child
-        pcbArray[newPcbIndex].setOlderSibling(nextChild);
-        return 0; // successful
+        pcbArray[currentChild].setYoungerSibling(newPcbIndex);
+        pcbArray[newPcbIndex].setOlderSibling(currentChild);
+
+        return 0;
     }
 
     /**
