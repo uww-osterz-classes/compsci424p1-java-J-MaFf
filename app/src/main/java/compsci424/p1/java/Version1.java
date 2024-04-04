@@ -84,7 +84,9 @@ public class Version1 {
      */
     void showProcessInfo() {
         for (int i = 0; i < pcbArray.length; i++) {
-            System.out.print("Process" + pcbArray[i] + ": parent is " + pcbArray[i].getParent() + " and ");
+            if (pcbArray[i] == null)
+                continue;
+            System.out.print("Process" + i + ": parent is " + pcbArray[i].getParent() + " and ");
             LinkedList<Integer> children = pcbArray[i].getChildren();
             if (children.isEmpty()) {
                 System.out.println("has no children");

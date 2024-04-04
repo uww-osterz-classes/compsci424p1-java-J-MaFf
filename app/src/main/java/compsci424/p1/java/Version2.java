@@ -109,7 +109,10 @@ public class Version2 {
      */
     void showProcessInfo() {
         for (int i = 0; i < pcbArray.length; i++) { // For each process in the PCB array
-            System.out.print("Process" + pcbArray[i] + ": parent is " + pcbArray[i].getParent() + " and ");
+            if (pcbArray[i] == null) {
+                continue;
+            }
+            System.out.print("Process" + i + ": parent is " + pcbArray[i].getParent() + " and ");
             int firstChild = pcbArray[i].getFirstChild();
 
             if (firstChild == -1) { // If process has no children
