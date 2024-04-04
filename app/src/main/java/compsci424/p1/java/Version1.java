@@ -87,10 +87,12 @@ public class Version1 {
         for (int i = 0; i < pcbArray.length; i++) {
             if (pcbArray[i] == null)
                 continue;
-            System.out.print("Process " + i + ": parent is " + pcbArray[i].getParent() + " and "); // HERE
+            System.out.print("Process " + i + ": parent is " + pcbArray[i].getParent() + " and ");
             LinkedList<Integer> children = pcbArray[i].getChildren();
             if (children.isEmpty()) {
                 System.out.println("has no children");
+            } else if (children.size() == 1) { // Check if there's exactly one child
+                System.out.println("child is " + children.getFirst());
             } else {
                 System.out.print("children are ");
                 for (int child : children) {
@@ -98,7 +100,6 @@ public class Version1 {
                 }
                 System.out.println();
             }
-
         }
     }
 
