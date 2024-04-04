@@ -1,5 +1,6 @@
 /* COMPSCI 424 Program 1
  * Name: Joey Maffiola
+ * File: Version2PCB.java
  */
 package compsci424.p1.java;
 
@@ -9,5 +10,85 @@ package compsci424.p1.java;
  * (if they exist) in Version 2.
  */
 public class Version2PCB {
+    private int parent, firstChild, youngerSibling, olderSibling;
+
+    /**
+     * Default constructor. Use this to allocate (if needed) and
+     * initialize the PCB array, create the PCB for process 0, and do
+     * any other initialization that is needed.
+     * 
+     * @param parent
+     */
+    Version2PCB(int parent) {
+        this.parent = parent;
+        this.firstChild = -1;
+        this.youngerSibling = -1;
+        this.olderSibling = -1;
+    }
+
+    /**
+     * Returns the parent of this PCB (Process Control Block).
+     *
+     * @return the parent of this PCB
+     */
+    public int getParent() {
+        return parent;
+    }
+
+    /**
+     * Returns the identifier of the first child process of this PCB.
+     *
+     * @return the identifier of the first child process
+     */
+    public int getFirstChild() {
+        return firstChild;
+    }
+
+    /**
+     * Sets the index of the first child process for this PCB.
+     *
+     * @param firstChild the index of the first child process
+     */
+    public void setFirstChild(int firstChild) {
+        this.firstChild = firstChild;
+    }
+
+    /**
+     * Returns the index of the younger sibling of the current process control block
+     * (PCB).
+     *
+     * @return the index of the younger sibling
+     */
+    public int getYoungerSibling() {
+        return youngerSibling;
+    }
+
+    /**
+     * Sets the younger sibling of the current process control block (PCB).
+     *
+     * @param youngerSibling the ID of the younger sibling PCB
+     */
+    public void setYoungerSibling(int youngerSibling) {
+        this.youngerSibling = youngerSibling;
+    }
+
+    /**
+     * Returns the index of the older sibling of the current process control block
+     * (PCB).
+     *
+     * @return the index of the older sibling
+     */
+    public int getOlderSibling() {
+        return olderSibling;
+    }
+
+    /**
+     * Sets the older sibling of the current process control block (PCB).
+     *
+     * @param olderSibling the ID of the older sibling process
+     */
+    public void setOlderSibling(int olderSibling) {
+        this.olderSibling = olderSibling;
+    }
 
 }

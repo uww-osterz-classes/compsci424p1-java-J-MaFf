@@ -1,5 +1,6 @@
 /* COMPSCI 424 Program 1
  * Name: Joey Maffiola
+ * File: Program1.java
  */
 package compsci424.p1.java;
 
@@ -64,7 +65,7 @@ public class Program1 {
         long startTime = System.currentTimeMillis();
         // ... then run the command sequence 200 times with Version 1.
         for (int i = 0; i < 200; i++) {
-            System.out.println("Iteration " + i + ":\n");
+            // System.out.println("Iteration " + i + ":\n");
             runCommands(v1Obj);
         }
         // ... After this, store the new current system time in a second variable.
@@ -77,6 +78,16 @@ public class Program1 {
         System.out.println("Version 1 running time for 200 iterations: " + runTime + " milliseconds.");
 
         // 8. Repeat step 7, but with the Version 2 object.
+        startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < 200; i++) {
+            // System.out.println("Iteration " + i + ":\n");
+            runCommands(v2Obj);
+        }
+
+        endTime = System.currentTimeMillis();
+        runTime = endTime - startTime;
+        System.out.println("Version 2 running time for 200 iterations: " + runTime + " milliseconds.");
 
         scanner.close();
         // This line is here just to test the Gradle build procedure.
@@ -91,7 +102,7 @@ public class Program1 {
      */
     private static void runCommands(Version1 v1Obj) {
         LinkedList<String> localActions = actions;
-        while (!localActions.isEmpty()) {
+        while (!localActions.isEmpty() && !localActions.peek().equalsIgnoreCase("end")) {
             String currentCommand = localActions.remove();
             String[] parts = currentCommand.split(" ");
             int TargetPID = Integer.parseInt(parts[1]);
@@ -113,8 +124,31 @@ public class Program1 {
 
     }
 
+    /**
+     * Runs a series of commands on the given Version2 object.
+     *
+     * @param v2Obj the Version2 object on which the commands will be executed
+     */
     private static void runCommands(Version2 v2Obj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runCommands'");
+        LinkedList<String> localActions = actions;
+        while (!localActions.isEmpty() && !localActions.peek().equalsIgnoreCase("end")) {
+            String currentCommand = localActions.remove();
+            String[] parts = currentCommand.split(" ");
+            int TargetPID = Integer.parseInt(parts[1]);
+            switch (parts[0]) {
+                case "create":
+                    v2Obj.create(TargetPID);
+                    break;
+
+                case "destroy":
+                    v2Obj.destroy(TargetPID);
+                    break;
+
+                default:
+                    System.out.println("Unknown Command: " + parts[0] + "\nSkipping command...");
+                    break;
+            }
+            v2Obj.showProcessInfo();
+        }
     }
 }
