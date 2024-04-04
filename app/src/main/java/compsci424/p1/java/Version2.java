@@ -69,21 +69,23 @@ public class Version2 {
      * @return 0 if successful, -1 if unsuccessful
      */
     int destroy(int targetPid) {
-        // If targetPid is not in the process hierarchy, do nothing;
-        // your code may return an error code or message in this case,
-        // but it should not halt
-        if (pcbArray[targetPid] == null) {
+        if (pcbArray[targetPid] == null) { // If targetPid is not in the process hierarchy, do nothing;
             System.out.println("Target process does not exist.");
             return -1; // unsuccessful
         }
 
-        // Assuming you've found the PCB for targetPid in the PCB array:
-        // 1. Recursively destroy all descendants of targetPid, if it
-        // has any, and mark their PCBs as "free" in the PCB array
-        // (i.e., deallocate them)
+        // 1. Recursively destroy all descendants of targetPid, if it has any, and mark
+        // their PCBs as "free" in the PCB array (i.e., deallocate them)
+        for (int child = pcbArray[targetPid].getFirstChild(); child != -1; child = pcbArray[child]
+                .getYoungerSibling()) {
+            destroy(child);
+        }
 
         // 2. Adjust connections within the hierarchy graph as needed to
         // re-connect the graph
+        if (pcbArray[targetPid].getFirstChild() != -1) { // Target PID has a first child
+
+        }
 
         // 3. Deallocate targetPid's PCB and mark its PCB array entry
         // as "free"
