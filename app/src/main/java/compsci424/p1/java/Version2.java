@@ -40,9 +40,10 @@ public class Version2 {
             return -1; // unsuccessful
         }
         // 1. Allocate and initialize a free PCB object from the array of PCB objects
+        Version2PCB newPCB = new Version2PCB(parentPid);
         int newPcbIndex = findFreePcbIndex();
         // 2. Connect the new PCB object to its parent
-        pcbArray[newPcbIndex] = new Version2PCB(parentPid);
+        pcbArray[newPcbIndex] = newPCB;
         // its older sibling (if any), and its younger sibling (if any)
         int firstChild = pcbArray[parentPid].getFirstChild();
         if (firstChild == -1) { // Parent has no first child
@@ -110,19 +111,32 @@ public class Version2 {
             if (pcbArray[i] == null) {
                 continue;
             }
-            System.out.print("Process" + i + ": parent is " + pcbArray[i].getParent() + " and ");
+            System.out.print("Process " + i + ": parent is " + pcbArray[i].getParent() + " and ");
             int firstChild = pcbArray[i].getFirstChild();
 
             if (firstChild == -1) { // If process has no children
                 System.out.println("has no children");
             } else {
-                System.out.print("and children are " + pcbArray[firstChild] + " ");
+                // Determine the number of children
+                int numChildren = 1; // Start with the first child
                 int currentChild = pcbArray[firstChild].getYoungerSibling();
-                while (currentChild != 1) { // While there are younger siblings
-                    System.out.print(pcbArray[currentChild] + " ");
+                while (currentChild != -1) { // Iterate through younger siblings
+                    numChildren++;
                     currentChild = pcbArray[currentChild].getYoungerSibling();
                 }
-                System.out.println();
+
+                // Print child information based on the number of children
+                if (numChildren == 1) {
+                    System.out.println("child is " + firstChild);
+                } else {
+                    System.out.print("children are " + firstChild + " ");
+                    currentChild = pcbArray[firstChild].getYoungerSibling();
+                    while (currentChild != -1) { // Print out each younger sibling
+                        System.out.print(currentChild + " ");
+                        currentChild = pcbArray[currentChild].getYoungerSibling();
+                    }
+                    System.out.println();
+                }
             }
         }
     }

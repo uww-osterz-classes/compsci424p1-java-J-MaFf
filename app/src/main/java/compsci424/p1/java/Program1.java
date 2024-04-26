@@ -30,6 +30,11 @@ public class Program1 {
         System.out.println("Enter commands of the form \"create N\", \"destroy N\", or \"end\".");
         System.out.println("N is an integer between 0 and 15.");
         String command = scanner.nextLine().toLowerCase();
+        while (command.split(" ").length != 2 && !command.equalsIgnoreCase("end")) {
+            System.out.println(
+                    "Invalid command. Please enter a command of the form \"create N\", \"destroy N\", or \"end\".");
+            command = scanner.nextLine().toLowerCase();
+        }
         actions.add(command);
 
         // 2. While the user has not typed "end", continue accepting
@@ -45,6 +50,11 @@ public class Program1 {
         while (!command.equalsIgnoreCase("end")) {
             System.out.println("Enter another command or type end to run your commands: ");
             command = scanner.nextLine().toLowerCase();
+            while (command.split(" ").length != 2 && !command.equalsIgnoreCase("end")) {
+                System.out.println(
+                        "Invalid command. Please enter a command of the form \"create N\", \"destroy N\", or \"end\".");
+                command = scanner.nextLine().toLowerCase();
+            }
             actions.add(command);
         }
 
