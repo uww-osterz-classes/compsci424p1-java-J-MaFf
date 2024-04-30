@@ -111,7 +111,8 @@ public class Program1 {
      * @param v1Obj the Version1 object on which the commands will be executed
      */
     private static void runCommands(Version1 v1Obj) {
-        LinkedList<String> localActions = actions;
+        /*** original: LinkedList<String> localActions = actions;  ***/
+        LinkedList<String> localActions = new LinkedList<String>(actions);  /*** Dr. Oster's change ***/
         while (!localActions.isEmpty() && !localActions.peek().equalsIgnoreCase("end")) {
             String currentCommand = localActions.remove();
             String[] parts = currentCommand.split(" ");
